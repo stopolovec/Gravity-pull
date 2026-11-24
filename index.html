@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="sl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#080b17">
+  <title>Gravitacijski obrat</title>
+  <meta name="description" content="Atmosferska ugankarska platformna igra s štirismerno gravitacijo.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="noise"></div>
+  <main>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Na začetek"><span class="brand-mark">G</span><span>GRAVITACIJSKI<br><b>OBRAT</b></span></a>
+      <div class="chapter"><span id="levelKicker">SEKTOR 01</span><strong id="levelName">PREBUJENJE</strong></div>
+      <div class="top-actions">
+        <button id="soundBtn" class="icon-btn" aria-label="Vklopi ali izklopi zvok">♪</button>
+        <button id="pauseBtn" class="icon-btn" aria-label="Premor">Ⅱ</button>
+      </div>
+    </header>
+
+    <section class="game-shell">
+      <canvas id="game" width="1280" height="720" aria-label="Igralno območje"></canvas>
+      <div class="vignette"></div>
+      <div class="hud">
+        <div class="stat"><span>ČAS</span><b id="timer">00:00.0</b></div>
+        <div class="stat center"><span>JEDRA</span><b id="cores">0 / 0</b></div>
+        <div class="gravity-readout"><span>GRAVITACIJA</span><div id="gravityArrow" class="gravity-arrow">↓</div></div>
+      </div>
+      <div id="toast" class="toast"></div>
+
+      <div id="startScreen" class="overlay active">
+        <div class="eyebrow">PROTOKOL G–04</div>
+        <h1>PRELOMI<br><em>PRAVILA</em></h1>
+        <p>V zapuščeni raziskovalni postaji tla niso vedno spodaj. Obrni gravitacijo, zberi energijska jedra in poišči izhod.</p>
+        <button id="startBtn" class="primary">ZAČNI MISIJO <span>→</span></button>
+        <button id="sectorMenuBtn" class="sector-menu-btn">IZBIRA SEKTORJA <span id="selectedSectorLabel">SEKTOR 01</span></button>
+        <button id="colorMenuBtn" class="sector-menu-btn">BARVA SIGNALA <span id="selectedColorLabel">KVANTNA</span></button>
+        <button id="oneLifeBtn" class="mode-toggle" aria-pressed="false"><span class="mode-dot"></span><span><b>ONE LIFE MODE</b><small>ENA NAPAKA KONČA POSKUS</small></span><em>OFF</em></button>
+        <div class="controls-preview">
+          <div><kbd>WASD</kbd><span>obrni gravitacijo</span></div>
+          <div><kbd>R</kbd><span>ponovi sektor</span></div>
+        </div>
+      </div>
+
+      <div id="colorScreen" class="overlay sector-screen">
+        <div class="sector-panel color-panel">
+          <div class="sector-heading">
+            <div><div class="eyebrow">VIZUALNI MODUL</div><h2>BARVA SIGNALA</h2></div>
+            <button id="closeColorBtn" class="icon-btn" aria-label="Zapri izbiro barve">×</button>
+          </div>
+          <div class="color-title"><span>ODKLENJENE TEME</span><b id="unlockProgress">1 / 9 ODKLENJENO</b></div>
+          <div id="palette" class="palette" aria-label="Izbira barvne teme"></div>
+          <p class="color-help">Novo barvno temo odkleneš po vsakih treh očiščenih sektorjih.</p>
+        </div>
+      </div>
+
+      <div id="sectorScreen" class="overlay sector-screen">
+        <div class="sector-panel">
+          <div class="sector-heading">
+            <div><div class="eyebrow">ARHIV POSTAJE</div><h2>IZBERI SEKTOR</h2></div>
+            <button id="closeSectorBtn" class="icon-btn" aria-label="Zapri izbiro sektorja">×</button>
+          </div>
+          <div id="sectorGrid" class="sector-grid"></div>
+          <div class="sector-legend"><span><i class="done"></i> OČIŠČENO</span><span><i class="current"></i> DOSTOPNO</span><span><i></i> ZAKLENJENO</span></div>
+        </div>
+      </div>
+
+      <div id="pauseScreen" class="overlay compact">
+        <div class="eyebrow">SISTEM ZAČASNO USTAVLJEN</div>
+        <h2>PREMOR</h2>
+        <button id="resumeBtn" class="primary">NADALJUJ <span>→</span></button>
+        <button id="restartBtn" class="text-btn">PONOVI SEKTOR</button>
+      </div>
+
+      <div id="completeScreen" class="overlay compact">
+        <div class="eyebrow">SEKTOR OČIŠČEN</div>
+        <h2 id="completeTitle">ODLIČNO</h2>
+        <p id="completeStats"></p>
+        <button id="nextBtn" class="primary">NASLEDNJI SEKTOR <span>→</span></button>
+      </div>
+
+      <div id="gameOverScreen" class="overlay compact danger-screen">
+        <div class="eyebrow">SIGNAL TRAJNO PREKINJEN</div>
+        <h2>MISSION<br>FAILED</h2>
+        <p id="gameOverStats"></p>
+        <button id="retryLifeBtn" class="primary danger">POSKUSI ZNOVA <span>↻</span></button>
+        <button id="menuBtn" class="text-btn">NAZAJ V GLAVNI MENI</button>
+      </div>
+    </section>
+
+    <footer>
+      <div class="key-guide"><span><kbd>W</kbd> GOR</span><span><kbd>A</kbd> LEVO</span><span><kbd>S</kbd> DOL</span><span><kbd>D</kbd> DESNO</span></div>
+      <div class="mission">MISija: <b>AKTIVIRAJ IZHOD</b></div>
+    </footer>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>

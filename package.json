@@ -1,0 +1,7 @@
+{
+  "name": "gravitacijski-obrat",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Štirismerna gravitacijska platformna igra",
+  "scripts": { "start": "node server.js" }
+}
